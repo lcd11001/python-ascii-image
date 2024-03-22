@@ -1,5 +1,5 @@
 # This is a sample Python script.
-from image_preprocess import show_image, read_image_gray, split_image
+from image_2_ascii import show_image, read_image_gray, split_image
 
 
 # Press Shift+F10 to execute it or replace it with your code.
