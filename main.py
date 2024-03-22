@@ -18,6 +18,7 @@ if __name__ == '__main__':
     for key in ASCII_STYLES.keys():
         print(f"\n\nStyle: {key}")
         img_2_ascii('assets/bj.png', 80, key)
+        img_2_file('assets/bj.png', 80, key, f'output/{key}.txt')
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

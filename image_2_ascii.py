@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 
@@ -89,3 +90,30 @@ def img_2_ascii(image_path, cols, style):
                 index = 0 if mean < 128 else 1
             print(ASCII_STYLES[style][index], end='')
         print()
+
+
+def img_2_file(image_path, cols, style, file_path):
+    img = read_image_gray(image_path)
+    rows, cols, cell_w, cell_h = split_image(img, cols)
+
+    # get parent directory
+    parent_dir = os.path.dirname(file_path)
+
+    # check if parent directory is not exists
+    if len(parent_dir) > 0 and not os.path.exists(parent_dir):
+        # create parent directory
+        os.makedirs(parent_dir)
+
+    with open(file_path, mode='w', encoding='utf-8') as f:
+        for i in range(rows):
+            for j in range(cols):
+                cell_image = get_cell(img, i, j, cell_w, cell_h)
+                mean = get_mean_intensity(cell_image)
+                index = 0
+                max_index = len(ASCII_STYLES[style]) - 1
+                if max_index > 1:
+                    index = int(mean / 255 * max_index)
+                else:
+                    index = 0 if mean < 128 else 1
+                f.write(ASCII_STYLES[style][index])
+            f.write('\n')
