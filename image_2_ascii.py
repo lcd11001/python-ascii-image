@@ -1,5 +1,5 @@
 import cv2
-
+import numpy as np
 
 # define ASCII styles use to replace pixels
 # https://www.asciiart.eu/image-to-ascii
@@ -66,3 +66,8 @@ def get_cell(image, row, col, cell_w, cell_h):
     x = col * cell_w
     y = row * cell_h
     return image[y:y + cell_h, x:x + cell_w]
+
+
+def get_mean_intensity(cell_image):
+    # calculate mean intensity of cell image
+    return np.mean(cell_image)
