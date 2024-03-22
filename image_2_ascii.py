@@ -84,10 +84,13 @@ def img_2_ascii(image_path, cols, style):
             mean = get_mean_intensity(cell_image)
             index = 0
             max_index = len(ASCII_STYLES[style]) - 1
+            index = round(mean / 255 * max_index)
+            '''
             if max_index > 1:
                 index = int(mean / 255 * max_index)
             else:
                 index = 0 if mean < 128 else 1
+            '''
             print(ASCII_STYLES[style][index], end='')
         print()
 
@@ -111,9 +114,12 @@ def img_2_file(image_path, cols, style, file_path):
                 mean = get_mean_intensity(cell_image)
                 index = 0
                 max_index = len(ASCII_STYLES[style]) - 1
+                index = round(mean / 255 * max_index)
+                '''
                 if max_index > 1:
                     index = int(mean / 255 * max_index)
                 else:
                     index = 0 if mean < 128 else 1
+                '''
                 f.write(ASCII_STYLES[style][index])
             f.write('\n')
