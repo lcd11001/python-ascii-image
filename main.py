@@ -1,5 +1,5 @@
 # This is a sample Python script.
-from image_preprocess import show_image, read_image_gray
+from image_preprocess import show_image, read_image_gray, split_image
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -14,6 +14,15 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
-    show_image(read_image_gray('assets/Design.png'))
+
+    img_input = read_image_gray('assets/Design.png')
+    img_h, img_w = img_input.shape
+    print(f"Image size: {img_w}x{img_h}")
+
+    # show_image(img_input)
+
+    rows, cols, cell_w, cell_h = split_image(img_input, 20)
+    print(f"rows: {rows}, cols: {cols}, cell_w: {cell_w}, cell_h: {cell_h}")
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
