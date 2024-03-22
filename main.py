@@ -15,24 +15,9 @@ def print_hi(name):
 if __name__ == '__main__':
     print_hi('PyCharm')
 
-    img_input = read_image_gray('assets/bj.png')
-    img_h, img_w = img_input.shape
-    print(f"Image size: {img_w}x{img_h}")
-
-    # show_image(img_input)
-
-    rows, cols, cell_w, cell_h = split_image(img_input, 80)
-    print(f"rows: {rows}, cols: {cols}, cell_w: {cell_w}, cell_h: {cell_h}")
-
-    # style = 'GRAYSCALE'
-    style = 'MINIMALIST'
-    for i in range(rows):
-        print()
-        for j in range(cols):
-            cell_image = get_cell(img_input, i, j, cell_w, cell_h)
-            mean = get_mean_intensity(cell_image)
-            index = int(mean / 255 * (len(ASCII_STYLES[style]) - 1))
-            print(ASCII_STYLES[style][index], end='')
+    for key in ASCII_STYLES.keys():
+        print(f"\n\nStyle: {key}")
+        img_2_ascii('assets/bj.png', 80, key)
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
