@@ -1,5 +1,5 @@
 # This is a sample Python script.
-from image_preprocess import show_image, read_image
+from image_preprocess import show_image, read_image_gray
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -14,6 +14,6 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
-    show_image(read_image('assets/Design.png'))
+    show_image(read_image_gray('assets/Design.png'))
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
