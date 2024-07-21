@@ -19,6 +19,16 @@ ASCII_STYLES = {
     'BLACK_AND_WHITE': " █"
 }
 
+def help():
+    print("Usage: img_2_ascii.py [image_path] [cols] [style] [output_file_path]")
+    print("  image_path: path to the image file")
+    print("  cols: number of columns")
+    print("  style: ASCII style. Available styles are:" + ', '.join(get_style_names()))
+    print("  output_file_path: path to the output file")
+
+def get_style_names():
+    return ASCII_STYLES.keys()
+
 
 def read_image(image_path):
     # read image from file
@@ -123,3 +133,30 @@ def img_2_file(image_path, cols, style, file_path):
                 '''
                 f.write(ASCII_STYLES[style][index])
             f.write('\n')
+
+
+if __name__=='__main__':
+    import sys
+    print(sys.argv)
+
+    if len(sys.argv) <= 1:
+        # if no arguments, print help
+        print ("type --help for more information")
+    elif len(sys.argv) == 2 and sys.argv[1] == '--help':
+        # if --help argument, print help
+        help()
+    elif len(sys.argv) < 5:
+        # if not enough arguments, print help
+        print("Not enough arguments, type --help for more information")
+    else:
+        image_path = sys.argv[1]
+        cols = int(sys.argv[2])
+        style = sys.argv[3]
+        output_file_path = sys.argv[4]
+
+        if style not in get_style_names():
+            print(f"Invalid style: {style}")
+            help()
+        else:
+            img_2_file(image_path, cols, style, output_file_path)
+            print(f"Output file: {output_file_path}")
